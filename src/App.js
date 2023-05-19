@@ -3,6 +3,8 @@ import Home from "./routes/Home";
 import RestaurantList from "./routes/Restaurant";
 import Cafe from "./routes/Cafe";
 import RestaurantDetail from "./routes/RestaurantDetail";
+import UserSignIn from "./routes/UserSignIn";
+import UserSignUp from "./routes/UserSignUp";
 
 function App() {
   return (
@@ -16,6 +18,12 @@ function App() {
         </Route>
         <Route path="/restaurant">
           <RestaurantList />
+        </Route>
+        <Route path="/join">
+          <UserSignUp />
+        </Route>
+        <Route path="/login">
+          <UserSignIn />
         </Route>
         <Route path="/">
           <Home />

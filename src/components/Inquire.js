@@ -1,5 +1,4 @@
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const Inquire = ({ type }) => {
@@ -11,9 +10,11 @@ const Inquire = ({ type }) => {
     }
   }
   return (
-    <Button variant="outline-secondary" size="lg" type="button">
-      <Link to={`/${type}`}>{inquireType()}</Link>
-    </Button>
+    <div className="d-grid gap-2">
+      <Button variant="secondary" size="lg" href={`/${type}`}>
+        {inquireType()}
+      </Button>
+    </div>
   );
 };
 

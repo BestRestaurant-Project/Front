@@ -1,4 +1,5 @@
 import StoreList from "../components/StoreList";
+import Search from "../components/Search";
 
 function Restaurant() {
   const restaurantList = {
@@ -29,6 +30,12 @@ function Restaurant() {
   };
   return (
     <div>
+      <h1>
+        <p className="text-center mt-4 mb-4">
+          <a href="/">단대맛집</a>
+        </p>
+      </h1>
+      <Search />
       <StoreList storeData={restaurantList.data} />
     </div>
   );

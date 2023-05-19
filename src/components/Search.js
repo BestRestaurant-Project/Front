@@ -2,16 +2,18 @@ import { useState } from "react";
 import { Button, InputGroup, Form } from "react-bootstrap";
 
 function Search() {
-  const [word, setWord] = useState("");
+  const [userInput, setUserInput] = useState("");
   const onChange = (event) => {
-    setWord(event.target.value);
+    event.preventDefault();
+    setUserInput(event.target.value);
   };
   return (
     <div>
       <Form>
         <InputGroup className="mb-3">
           <Form.Control
-            value={word}
+            type="text"
+            value={userInput}
             onChange={onChange}
             placeholder="가게/메뉴검색"
           />

@@ -14,6 +14,11 @@ function Cafe() {
   };
   return (
     <div>
+      <h1>
+        <p className="text-center mt-4 mb-4">
+          <a href="/">단대맛집</a>
+        </p>
+      </h1>
       <StoreList storeData={cafeList.data} />
     </div>
   );
