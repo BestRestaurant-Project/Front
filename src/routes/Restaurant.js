@@ -1,5 +1,4 @@
-import StoreList from "../components/StoreList";
-import Search from "../components/Search";
+import StoreListForm from "../components/StoreListForm";
 
 function Restaurant() {
   const restaurantList = {
@@ -30,13 +29,7 @@ function Restaurant() {
   };
   return (
     <div>
-      <h1>
-        <p className="text-center mt-4 mb-4">
-          <a href="/">단대맛집</a>
-        </p>
-      </h1>
-      <Search />
-      <StoreList storeData={restaurantList.data} />
+      <StoreListForm type="restaurant" storeData={restaurantList.data} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import RestaurantList from "./routes/Restaurant";
-import Cafe from "./routes/Cafe";
 import RestaurantDetail from "./routes/RestaurantDetail";
 import UserSignIn from "./routes/UserSignIn";
 import UserSignUp from "./routes/UserSignUp";
+import Cafe from "./routes/Cafe";
 
 function App() {
   return (

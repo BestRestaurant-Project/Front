@@ -5,9 +5,9 @@ function StoreDetail({ storeData }) {
   return (
     <div>
       <br />
-      <h1>
+      <h3>
         <p className="text-center mt-4 mb-4">{storeData[storeId - 1].name}</p>
-      </h1>
+      </h3>
       <ul>
         <li>
           <h5>{storeData[storeId - 1].foodType}</h5>
