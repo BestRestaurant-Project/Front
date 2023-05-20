@@ -1,8 +1,21 @@
+import axios from "axios";
+import useAsync from "./useAsync";
 import Store from "./Store";
 import Search from "../components/Search";
 import Nav from "react-bootstrap/Nav";
 
 function StoreListForm({ type, storeData }) {
+  async function getStores() {
+    const response = await axios.get(`/stores/${type}/get`);
+    return response.data;
+  }
+
+  const [state, refetch] = useAsync(getStores, []);
+  const { loading, data: stores, error } = state;
+
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다</div>;
+  if (!stores) return null;
   return (
     <div>
       <h3>
@@ -23,7 +36,7 @@ function StoreListForm({ type, storeData }) {
         </Nav.Item>
       </Nav>
       <Search />
-      {storeData.map((store) => (
+      {stores.map((store) => (
         <Store
           key={store.storeId}
           name={store.name}

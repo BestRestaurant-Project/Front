@@ -8,7 +8,7 @@ function Cafe() {
         storeId: 1,
         starRating: 5,
         name: "1319",
-        type: "카페",
+        type: "cafe",
       },
     ],
   };
