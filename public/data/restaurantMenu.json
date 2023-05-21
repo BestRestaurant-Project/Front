@@ -1,0 +1,20 @@
+[
+  {
+    "foodId": 2,
+    "storeId": 1,
+    "name": "고추장삼겹살덮밥",
+    "cost": 7000
+  },
+  {
+    "foodId": 4,
+    "storeId": 1,
+    "name": "간장삼겹살덮밥",
+    "cost": 7000
+  },
+  {
+    "foodId": 6,
+    "storeId": 1,
+    "name": "쌈겹덮밥",
+    "cost": 7000
+  }
+]

@@ -1,35 +1,22 @@
 import StoreListForm from "../components/StoreListForm";
+import { useState, useEffect } from "react";
 
 function Restaurant() {
-  const restaurantList = {
-    result: "SUCCESS",
-    data: [
-      {
-        storeId: 1,
-        starRating: 5,
-        name: "해피덮",
-        type: "restaurant",
-        foodType: "양식",
-      },
-      {
-        storeId: 2,
-        starRating: 4.5,
-        name: "백소정",
-        type: "restaurant",
-        foodType: "일식",
-      },
-      {
-        storeId: 3,
-        starRating: 4.2,
-        name: "단대골목",
-        type: "restaurant",
-        foodType: "한식",
-      },
-    ],
-  };
+  const [stores, setStores] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/data/restaurantData.json", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStores(data);
+      });
+  }, []);
+
   return (
     <div>
-      <StoreListForm type="restaurant" storeData={restaurantList.data} />
+      <StoreListForm type="restaurant" storeData={stores} />
     </div>
   );
 }

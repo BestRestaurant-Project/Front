@@ -1,36 +1,69 @@
-import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
+import { Button } from "react-bootstrap";
+import styled from "styled-components";
+
+const ARRAY = [0, 1, 2, 3, 4];
 
 function StarRate() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [clicked, setClicked] = useState([false, false, false, false, false]);
+
+  const handleStarClick = (index) => {
+    let clickStates = [...clicked];
+    for (let i = 0; i < 5; i++) {
+      clickStates[i] = i <= index ? true : false;
+    }
+    setClicked(clickStates);
+  };
+
+  useEffect(() => {
+    sendReview();
+  }, [clicked]);
+
+  const sendReview = () => {
+    let score = clicked.filter(Boolean).length;
+    // api 연동
+  };
+
   return (
     <div>
-      <Button variant="info" onClick={handleShow}>
-        평가하기
-      </Button>
-      <Modal show={show} onHide={handleClose}>
-        <Form>
-          <Modal.Header>
-            <Modal.Title>별점</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Label>평가하기</Form.Label>
-            <Form.Range />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={handleClose}>
-              닫기
-            </Button>
-            <Button variant="primary" type="submit">
-              평가
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
+      <Stars>
+        {ARRAY.map((el, idx) => {
+          return (
+            <FaStar
+              key={idx}
+              size="50"
+              onClick={() => handleStarClick(el)}
+              className={clicked[el] && "yellowStar"}
+            />
+          );
+        })}
+      </Stars>
+      <Button variant="primary">평가하기</Button>
     </div>
   );
 }
 
 export default StarRate;
+
+const Stars = styled.div`
+  display: flex;
+  padding-top: 3px;
+
+  & svg {
+    color: gray;
+    cursor: pointer;
+  }
+
+  :hover svg {
+    color: #fcc419;
+  }
+
+  & svg:hover ~ svg {
+    color: gray;
+  }
+
+  .yellowStar {
+    color: #fcc419;
+  }
+`;
