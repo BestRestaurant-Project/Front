@@ -1,6 +1,8 @@
-import StoreType from "../components/StoreType";
 import Stack from "react-bootstrap/Stack";
-import Nav from "react-bootstrap/Nav";
+import { Nav, Button } from "react-bootstrap";
+import styled from "styled-components";
+
+const stores = ["restaurant", "cafe"];
 
 function Home() {
   return (
@@ -20,11 +22,32 @@ function Home() {
         </Nav.Item>
       </Nav>
       <Stack gap={2}>
-        <StoreType type={"restaurant"} />
-        <StoreType type={"cafe"} />
+        {stores.map((element, index) => (
+          <div key={index} className="d-grid gap-2">
+            {element === "restaurant" ? (
+              <Button
+                key={element}
+                variant="secondary"
+                size="lg"
+                href="/restaurant"
+              >
+                식당
+              </Button>
+            ) : (
+              <Button key={element} variant="secondary" size="lg" href="/cafe">
+                카페
+              </Button>
+            )}
+          </div>
+        ))}
       </Stack>
     </div>
   );
 }
+
+const NewButton = styled.button`
+  width: 200px;
+  height: 200px;
+`;
 
 export default Home;

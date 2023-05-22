@@ -1,5 +1,4 @@
-import Badge from "react-bootstrap/Badge";
-import ListGroup from "react-bootstrap/ListGroup";
+import Store from "./Store";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 
@@ -28,18 +27,18 @@ function reducer(state, action) {
   }
 }
 
-function Menu({ storeId }) {
+function StoreListForm({ storeType }) {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
     error: null,
   });
 
-  const fetchMenu = async () => {
+  const fetchStores = async () => {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        `http://localhost:3000/data/foods/${storeId}.json`
+        `http://localhost:3000/data/stores/${storeType}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
     } catch (e) {
@@ -48,37 +47,28 @@ function Menu({ storeId }) {
   };
 
   useEffect(() => {
-    fetchMenu();
+    fetchStores();
   }, []);
 
-  const { loading, data: menu, error } = state;
+  const { loading, data: stores, error } = state;
 
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
-  if (!menu) return null;
+  if (!stores) return null;
 
   return (
-    <>
-      <h2>
-        <p className="mt-4 mb-4">메뉴</p>
-      </h2>
-      {menu.map((element) => (
-        <ListGroup key={element.foodId} id={element.foodId} variant="flush">
-          <ListGroup.Item className="d-flex justify-content-between align-items-start">
-            <div className="ms-2 me-auto">
-              <div className="fw-bold">
-                <h5>{element.name}</h5>
-              </div>
-              {element.cost}
-            </div>
-            <Badge bg="dark" pill>
-              {element.foodId}
-            </Badge>
-          </ListGroup.Item>
-        </ListGroup>
+    <div>
+      {stores.map((store) => (
+        <Store
+          key={store.storeId}
+          name={store.name}
+          storeId={store.storeId}
+          starRating={store.starRating}
+          foodType={store.foodType}
+        />
       ))}
-    </>
+    </div>
   );
 }
 
-export default Menu;
+export default StoreListForm;

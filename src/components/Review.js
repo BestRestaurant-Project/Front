@@ -1,7 +1,7 @@
-import Badge from "react-bootstrap/Badge";
-import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
+import Badge from "react-bootstrap/Badge";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -28,18 +28,18 @@ function reducer(state, action) {
   }
 }
 
-function Menu({ storeId }) {
+function Review({ storeId }) {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
     error: null,
   });
 
-  const fetchMenu = async () => {
+  const fetchReply = async () => {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        `http://localhost:3000/data/foods/${storeId}.json`
+        `http://localhost:3000/data/replies/${storeId}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
     } catch (e) {
@@ -48,31 +48,31 @@ function Menu({ storeId }) {
   };
 
   useEffect(() => {
-    fetchMenu();
+    fetchReply();
   }, []);
 
-  const { loading, data: menu, error } = state;
+  const { loading, data: reply, error } = state;
 
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
-  if (!menu) return null;
+  if (!reply) return null;
 
   return (
     <>
       <h2>
-        <p className="mt-4 mb-4">메뉴</p>
+        <p className="mt-4 mb-4">댓글</p>
       </h2>
-      {menu.map((element) => (
-        <ListGroup key={element.foodId} id={element.foodId} variant="flush">
+      {reply.map((element) => (
+        <ListGroup key={element.replyId} id={element.replyId} variant="flush">
           <ListGroup.Item className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
               <div className="fw-bold">
-                <h5>{element.name}</h5>
+                <h5>{element.userName}</h5>
               </div>
-              {element.cost}
+              {element.content}
             </div>
             <Badge bg="dark" pill>
-              {element.foodId}
+              {element.dateTime}
             </Badge>
           </ListGroup.Item>
         </ListGroup>
@@ -81,4 +81,4 @@ function Menu({ storeId }) {
   );
 }
 
-export default Menu;
+export default Review;
