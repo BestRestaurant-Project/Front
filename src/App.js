@@ -5,11 +5,13 @@ import RestaurantDetail from "./routes/RestaurantDetail";
 import UserSignIn from "./routes/UserSignIn";
 import UserSignUp from "./routes/UserSignUp";
 import Cafe from "./routes/Cafe";
+import CafeDetail from "./components/CafeDetail";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/cafe/:storeId" component={CafeDetail} />
         <Route path="/cafe" component={Cafe} />
         <Route path="/restaurant/:storeId" component={RestaurantDetail} />
         <Route path="/restaurant" component={Restaurant} />

@@ -1,6 +1,5 @@
 import Stack from "react-bootstrap/Stack";
 import { Nav, Button } from "react-bootstrap";
-import styled from "styled-components";
 
 const stores = ["restaurant", "cafe"];
 
@@ -44,10 +43,5 @@ function Home() {
     </div>
   );
 }
-
-const NewButton = styled.button`
-  width: 200px;
-  height: 200px;
-`;
 
 export default Home;

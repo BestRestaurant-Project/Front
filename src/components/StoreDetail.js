@@ -1,9 +1,8 @@
 import Menu from "./Menu";
-import Comment from "./Comment";
 import { useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Review from "./Review";
+import CommentList from "./CommentList";
 import StarRate from "./StarRate";
 
 function reducer(state, action) {
@@ -71,8 +70,7 @@ function StoreDetail({ type }) {
       <p className="text-center mt-4 mb-4">평점: {thisStore.ratingAverage}</p>
       <Menu storeId={thisStore.storeId} />
       <StarRate />
-      <Comment />
-      <Review storeId={thisStore.storeId} />
+      <CommentList storeId={thisStore.storeId} />
     </div>
   );
 }

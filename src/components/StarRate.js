@@ -22,6 +22,7 @@ function StarRate() {
 
   const sendReview = () => {
     let score = clicked.filter(Boolean).length;
+    console.log(score);
     // api 연동
   };
 
@@ -39,7 +40,9 @@ function StarRate() {
           );
         })}
       </Stars>
-      <Button variant="primary">평가하기</Button>
+      <Button variant="primary" type="submit">
+        평가하기
+      </Button>
     </div>
   );
 }
