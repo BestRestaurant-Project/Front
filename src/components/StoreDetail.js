@@ -63,6 +63,7 @@ function StoreDetail({ type }) {
 
   const thisStore = store[0];
 
+
   return (
     <div>
       <h1>

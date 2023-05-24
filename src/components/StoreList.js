@@ -1,6 +1,11 @@
 import Store from "./Store";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
+import {Link} from 'react-router-dom';
+import { Button } from "react-bootstrap";
+import AddStore from "./AddStore";
+
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -58,6 +63,14 @@ function StoreListForm({ storeType }) {
 
   return (
     <div>
+
+      <Button href="/restaurant/newstore">
+        가게추가
+      </Button>
+
+|
+
+
       {stores.map((store) => (
         <Store
           key={store.storeId}
