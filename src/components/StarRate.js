@@ -32,7 +32,7 @@ function StarRate() {
           return (
             <FaStar
               key={idx}
-              size="50"
+              size="30"
               onClick={() => handleStarClick(el)}
               className={clicked[el] && "yellowStar"}
             />

@@ -3,7 +3,7 @@ import StoreDetail from "../components/StoreDetail";
 function RestaurantDetail() {
   return (
     <div>
-      <StoreDetail />
+      <StoreDetail type="restaurant" />
     </div>
   );
 }

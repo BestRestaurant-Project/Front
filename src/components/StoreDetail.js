@@ -1,7 +1,10 @@
-import Menu from "../components/Menu";
+import Menu from "./Menu";
+import Comment from "./Comment";
 import { useEffect, useReducer } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Review from "./Review";
+import StarRate from "./StarRate";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -28,7 +31,8 @@ function reducer(state, action) {
   }
 }
 
-function StoreDetail() {
+function StoreDetail({ type }) {
+  const { storeId } = useParams();
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
@@ -39,7 +43,7 @@ function StoreDetail() {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        "http://localhost:3000/data/restaurant/1.json"
+        `http://localhost:3000/data/${type}/${storeId}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
     } catch (e) {
@@ -66,6 +70,8 @@ function StoreDetail() {
       </h1>
       <p className="text-center mt-4 mb-4">평점: {thisStore.ratingAverage}</p>
       <Menu storeId={thisStore.storeId} />
+      <StarRate />
+      <Comment />
       <Review storeId={thisStore.storeId} />
     </div>
   );

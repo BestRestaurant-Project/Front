@@ -2,13 +2,13 @@ import propTypes from "prop-types";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 
-function Store({ name, storeId, starRating, foodType }) {
+function Store({ name, type, storeId, starRating, foodType }) {
   return (
     <ListGroup id={storeId} variant="flush">
       <ListGroup.Item
         className="d-flex justify-content-between align-items-start"
         action
-        href={`/restaurant/${storeId}`}
+        href={`/${type}/${storeId}`}
       >
         <div className="ms-2 me-auto">
           <div className="fw-bold">
@@ -27,6 +27,7 @@ function Store({ name, storeId, starRating, foodType }) {
 Store.propTypes = {
   storeId: propTypes.number.isRequired,
   name: propTypes.string.isRequired,
+  type: propTypes.string.isRequired,
   starRating: propTypes.number.isRequired,
   foodType: propTypes.string,
 };

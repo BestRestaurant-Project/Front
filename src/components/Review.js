@@ -59,9 +59,6 @@ function Review({ storeId }) {
 
   return (
     <>
-      <h2>
-        <p className="mt-4 mb-4">댓글</p>
-      </h2>
       {reply.map((element) => (
         <ListGroup key={element.replyId} id={element.replyId} variant="flush">
           <ListGroup.Item className="d-flex justify-content-between align-items-start">

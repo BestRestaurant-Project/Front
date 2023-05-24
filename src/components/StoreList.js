@@ -61,6 +61,7 @@ function StoreListForm({ storeType }) {
       {stores.map((store) => (
         <Store
           key={store.storeId}
+          type={store.type}
           name={store.name}
           storeId={store.storeId}
           starRating={store.starRating}
