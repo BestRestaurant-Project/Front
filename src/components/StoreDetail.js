@@ -42,7 +42,7 @@ function StoreDetail({ type }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        `http://localhost:3000/data/${type}/${storeId}.json`
+        `http://43.201.107.168:9000/store/${storeId}/get`
       );
       dispatch({ type: "SUCCESS", data: response.data });
     } catch (e) {
@@ -60,7 +60,7 @@ function StoreDetail({ type }) {
   if (error) return <div>에러가 발생했습니다</div>;
   if (!store) return null;
 
-  const thisStore = store[0];
+  const thisStore = store.data;
 
   return (
     <div>

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./routes/Home";
-import Restaurant from "./routes/Restaurant";
-import RestaurantDetail from "./routes/RestaurantDetail";
 import UserSignIn from "./routes/UserSignIn";
 import UserSignUp from "./routes/UserSignUp";
+import Restaurant from "./routes/Restaurant";
+import RestaurantDetail from "./routes/RestaurantDetail";
 import Cafe from "./routes/Cafe";
-import CafeDetail from "./components/CafeDetail";
+import CafeDetail from "./routes/CafeDetail";
 
 function App() {
   return (
