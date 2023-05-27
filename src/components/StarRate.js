@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
+import axios from "axios";
+import storage from "../lib/storage";
 
 const ARRAY = [0, 1, 2, 3, 4];
 
-function StarRate() {
+function StarRate({ storeId }) {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
 
   const handleStarClick = (index) => {
@@ -16,14 +18,27 @@ function StarRate() {
     setClicked(clickStates);
   };
 
-  useEffect(() => {
-    sendReview();
-  }, [clicked]);
-
-  const sendReview = () => {
+  const sendReview = async (event) => {
     let score = clicked.filter(Boolean).length;
     console.log(score);
-    // api 연동
+
+    const tokens = storage.get("tokens");
+    const accessToken = tokens.tokenDto.accessToken;
+    console.log(accessToken);
+
+    const response = await axios.post(
+      process.env.REACT_APP_HOST + `/starrating/evaluate`,
+      {
+        storeId,
+        ratingValue: score,
+      },
+      {
+        headers: {
+          Access_Token: accessToken,
+        },
+      }
+    );
+    console.log(response.data);
   };
 
   return (
@@ -40,7 +55,7 @@ function StarRate() {
           );
         })}
       </Stars>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={sendReview}>
         평가하기
       </Button>
     </div>

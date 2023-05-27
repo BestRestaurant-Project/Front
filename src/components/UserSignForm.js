@@ -1,12 +1,12 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import oc from "open-color";
-import UserNameCheck from "./UserNameCheck";
+import storage from "../lib/storage";
 
 const initialState = {
-  username: "",
+  userName: "",
   password: "",
   loading: false,
   error: null,
@@ -25,15 +25,14 @@ const reducer = (state, action) => {
         loading: true,
         error: null,
       };
-    case "REGISTER_SUCCESS":
+    case "SUCCESS":
       return {
         ...state,
         loading: false,
-        username: "",
+        userName: "",
         password: "",
-        email: "",
       };
-    case "REGISTER_FAILURE":
+    case "FAIL":
       return {
         ...state,
         loading: false,
@@ -45,7 +44,6 @@ const reducer = (state, action) => {
 };
 
 const UserSignForm = ({ type }) => {
-  const [nameCheck, setNameCheck] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChange = (event) => {
@@ -60,27 +58,54 @@ const UserSignForm = ({ type }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { username, password } = state;
+    const { userName, password } = state;
 
     dispatch({ type: "REGISTER_START" });
 
-    try {
-      // 회원가입 요청
-      const response = await axios.post("/api/register", {
-        username,
-        password,
-      });
+    if (type === "login") {
+      try {
+        const response = await axios.post(
+          //process.env.REACT_APP_HOST + `/user/signIn`,
+          "http://13.209.66.49:9000/user/signIn",
+          {
+            userName,
+            password,
+          }
+        );
+        dispatch({ type: "SUCCESS" });
+        if (response.data.result === "SUCCESS") {
+          storage.set("tokens", response.data.data);
+          console.log(response.data.data);
+          const tokens = storage.get("tokens");
+          const accessToken = tokens.tokenDto.accessToken;
+          console.log(accessToken);
+        }
+      } catch (error) {
+        dispatch({ type: "FAIL", error: error.message });
+        console.error(error);
+      }
+    } else {
+      try {
+        const response = await axios.post(
+          process.env.REACT_APP_HOST + `/user/signIn`,
+          //"http://13.209.66.49:9000/user/signUp",
+          {
+            userName,
+            password,
+          }
+        );
 
-      dispatch({ type: "SUCCESS" });
+        dispatch({ type: "SUCCESS" });
 
-      console.log(response.data); // 성공적으로 회원가입된 사용자 정보
-    } catch (error) {
-      dispatch({ type: "FAIL", error: error.message });
-      console.error(error);
+        console.log(response.data);
+      } catch (error) {
+        dispatch({ type: "FAIL", error: error.message });
+        console.error(error);
+      }
     }
   };
 
-  const { username, password, loading, error } = state;
+  const { userName, password, loading, error } = state;
 
   return (
     <AuthFormBlock>
@@ -90,16 +115,11 @@ const UserSignForm = ({ type }) => {
         <Form onSubmit={handleSubmit}>
           <Input
             type="text"
-            name="username"
-            value={username}
+            name="userName"
+            value={userName}
             placeholder="사용자명"
             onChange={handleChange}
           />
-          {type === "join" ? (
-            <UserNameCheck checked={nameCheck} onChange={setNameCheck}>
-              사용자명 중복확인
-            </UserNameCheck>
-          ) : null}
           <Input
             type="password"
             name="password"

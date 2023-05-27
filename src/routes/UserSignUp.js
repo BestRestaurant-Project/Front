@@ -9,7 +9,6 @@ const AuthTemplateBlock = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  /* 내가 설정해놓은 paltte 에서 2번째 회색을 쓰겠어 */
   background: white;
   display: flex;
   flex-direction: column;

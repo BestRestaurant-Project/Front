@@ -42,9 +42,10 @@ function StoreDetail({ type }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        `http://43.201.107.168:9000/store/${storeId}/get`
+        `http:///13.209.66.49:9000/store/${storeId}/get`
       );
       dispatch({ type: "SUCCESS", data: response.data });
+      console.log(response.data);
     } catch (e) {
       dispatch({ type: "ERROR", error: e });
     }
@@ -69,7 +70,7 @@ function StoreDetail({ type }) {
       </h1>
       <p className="text-center mt-4 mb-4">평점: {thisStore.ratingAverage}</p>
       <Menu storeId={thisStore.storeId} />
-      <StarRate />
+      <StarRate storeId={thisStore.storeId} />
       <CommentList storeId={thisStore.storeId} />
     </div>
   );

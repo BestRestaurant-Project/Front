@@ -39,6 +39,7 @@ function Menu({ storeId }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
+        //process.env.REACT_APP_HOST + `/user/signIn`,
         `http://localhost:3000/data/foods/${storeId}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });

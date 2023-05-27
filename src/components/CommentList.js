@@ -40,6 +40,7 @@ const CommentList = ({ storeId, replyId }) => {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
+        //process.env.REACT_APP_HOST + `/user/signIn`,
         `http://localhost:3000/data/replies/${storeId}.json`
       );
       setComments(response.data);

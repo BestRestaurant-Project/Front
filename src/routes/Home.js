@@ -1,5 +1,7 @@
 import Stack from "react-bootstrap/Stack";
-import { Nav, Button } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const stores = ["restaurant", "cafe"];
 
@@ -24,18 +26,11 @@ function Home() {
         {stores.map((element, index) => (
           <div key={index} className="d-grid gap-2">
             {element === "restaurant" ? (
-              <Button
-                key={element}
-                variant="secondary"
-                size="lg"
-                href="/restaurant"
-              >
-                식당
-              </Button>
+              <Link to="/restaurant">
+                <StoreButton key={element}>식당</StoreButton>
+              </Link>
             ) : (
-              <Button key={element} variant="secondary" size="lg" href="/cafe">
-                카페
-              </Button>
+              <StoreButton key={element}>카페</StoreButton>
             )}
           </div>
         ))}
@@ -45,3 +40,12 @@ function Home() {
 }
 
 export default Home;
+
+const StoreButton = styled.button`
+  margin-top: 1rem;
+  padding: 10px;
+  background-color: #4d6f53;
+  color: white;
+  border: none;
+  cursor: pointer;
+`;
