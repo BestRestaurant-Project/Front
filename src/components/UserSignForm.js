@@ -43,7 +43,7 @@ const reducer = (state, action) => {
   }
 };
 
-const UserSignForm = ({ type }) => {
+const UserSignForm = ({ type, locateion }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChange = (event) => {
@@ -65,8 +65,7 @@ const UserSignForm = ({ type }) => {
     if (type === "login") {
       try {
         const response = await axios.post(
-          //process.env.REACT_APP_HOST + `/user/signIn`,
-          "http://13.209.66.49:9000/user/signIn",
+          process.env.REACT_APP_HOST + `/user/signIn`,
           {
             userName,
             password,
@@ -79,6 +78,7 @@ const UserSignForm = ({ type }) => {
           const tokens = storage.get("tokens");
           const accessToken = tokens.tokenDto.accessToken;
           console.log(accessToken);
+          document.location.href = "/";
         }
       } catch (error) {
         dispatch({ type: "FAIL", error: error.message });
@@ -87,8 +87,7 @@ const UserSignForm = ({ type }) => {
     } else {
       try {
         const response = await axios.post(
-          process.env.REACT_APP_HOST + `/user/signIn`,
-          //"http://13.209.66.49:9000/user/signUp",
+          process.env.REACT_APP_HOST + `/user/signUp`,
           {
             userName,
             password,

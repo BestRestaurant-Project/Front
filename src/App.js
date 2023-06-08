@@ -6,6 +6,8 @@ import Restaurant from "./routes/Restaurant";
 import RestaurantDetail from "./routes/RestaurantDetail";
 import Cafe from "./routes/Cafe";
 import CafeDetail from "./routes/CafeDetail";
+import "./styles/reset.css";
+import "./styles/button.css";
 
 function App() {
   return (

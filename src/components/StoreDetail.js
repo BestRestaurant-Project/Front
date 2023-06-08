@@ -42,7 +42,8 @@ function StoreDetail({ type }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        `http:///13.209.66.49:9000/store/${storeId}/get`
+        //process.env.REACT_APP_HOST + `/store/${storeId}/get`
+        `http://localhost:3000/data/restaurant/${storeId}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
       console.log(response.data);

@@ -24,13 +24,19 @@ function Home() {
       </Nav>
       <Stack gap={2}>
         {stores.map((element, index) => (
-          <div key={index} className="d-grid gap-2">
+          <div className="find-btn" key={index}>
             {element === "restaurant" ? (
-              <Link to="/restaurant">
-                <StoreButton key={element}>식당</StoreButton>
-              </Link>
+              <button className="btn find-btn1" key={element}>
+                <Link to="/restaurant">
+                  <h4>식당</h4>
+                </Link>
+              </button>
             ) : (
-              <StoreButton key={element}>카페</StoreButton>
+              <button className="btn find-btn1" key={element}>
+                <Link to="/cafe">
+                  <h4>카페</h4>
+                </Link>
+              </button>
             )}
           </div>
         ))}
@@ -40,12 +46,3 @@ function Home() {
 }
 
 export default Home;
-
-const StoreButton = styled.button`
-  margin-top: 1rem;
-  padding: 10px;
-  background-color: #4d6f53;
-  color: white;
-  border: none;
-  cursor: pointer;
-`;
