@@ -69,16 +69,20 @@ const CommentList = ({ storeId, replyId }) => {
       <h2>
         <p className="mt-4 mb-4">댓글</p>
       </h2>
-      <CommentForm
-        storeId={storeId}
-        replyId={replyId}
-        onCommentSubmit={handleCommentSubmit}
-      />
-      {comments.map((comment) => (
-        <>
-          <p key={comment.replyId}>{comment.content}</p>
-        </>
-      ))}
+      <div className="small__block">
+        <CommentForm
+          storeId={storeId}
+          replyId={replyId}
+          onCommentSubmit={handleCommentSubmit}
+        />
+        {comments.map((comment) => (
+          <>
+            <p key={comment.replyId}>
+              {comment.content} - {comment.userName}
+            </p>
+          </>
+        ))}
+      </div>
     </div>
   );
 };

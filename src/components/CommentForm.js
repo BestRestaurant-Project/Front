@@ -35,9 +35,14 @@ const CommentForm = ({ storeId, replyId, onCommentSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea value={comment} onChange={handleCommentChange} />
-      <button className="find-btn2" type="submit">
-        댓글 작성
+      <textarea
+        className="comment"
+        value={comment}
+        onChange={handleCommentChange}
+        placeholder="후기를 남겨주세요."
+      />
+      <button className="comment__btn" type="submit">
+        등록
       </button>
     </form>
   );

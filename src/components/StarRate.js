@@ -45,7 +45,7 @@ function StarRate({ storeId }) {
       <h2>
         <p className="mt-4">별점</p>
       </h2>
-      <Stars>
+      <Stars className="small__block">
         {ARRAY.map((el, idx) => {
           return (
             <FaStar
@@ -69,6 +69,7 @@ export default StarRate;
 const Stars = styled.div`
   display: flex;
   padding-top: 20px;
+  padding-bottom: 20px;
 
   & svg {
     color: gray;
