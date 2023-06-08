@@ -36,7 +36,9 @@ const CommentForm = ({ storeId, replyId, onCommentSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <textarea value={comment} onChange={handleCommentChange} />
-      <button type="submit">댓글 작성</button>
+      <button className="find-btn2" type="submit">
+        댓글 작성
+      </button>
     </form>
   );
 };

@@ -67,7 +67,7 @@ const CommentList = ({ storeId, replyId }) => {
   return (
     <div>
       <h2>
-        <p className="mt-4 mb-4">댓글 목록</p>
+        <p className="mt-4 mb-4">댓글</p>
       </h2>
       <CommentForm
         storeId={storeId}

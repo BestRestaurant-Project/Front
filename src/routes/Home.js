@@ -1,13 +1,13 @@
 import Stack from "react-bootstrap/Stack";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import "./Home.css";
 
 const stores = ["restaurant", "cafe"];
 
 function Home() {
   return (
-    <div>
+    <div className="white__block">
       <h1>
         <p className="text-center mt-4 mb-4">단대맛집</p>
       </h1>

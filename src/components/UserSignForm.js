@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import oc from "open-color";
@@ -45,6 +45,7 @@ const reducer = (state, action) => {
 
 const UserSignForm = ({ type, locateion }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const history = useHistory();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -64,6 +65,7 @@ const UserSignForm = ({ type, locateion }) => {
 
     if (type === "login") {
       try {
+        // 로그인 요청
         const response = await axios.post(
           process.env.REACT_APP_HOST + `/user/signIn`,
           {
@@ -71,14 +73,20 @@ const UserSignForm = ({ type, locateion }) => {
             password,
           }
         );
-        dispatch({ type: "SUCCESS" });
+        // 토큰을 얻어와 로컬에 저장하고 가져옴
+        storage.set("tokens", response.data.data);
+        const tokens = storage.get("tokens");
+        const accessToken = tokens.tokenDto.accessToken;
+
+        // 토큰을 헤더에 설정
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+
+        dispatch({ type: "SUCCESS", payload: accessToken });
         if (response.data.result === "SUCCESS") {
-          storage.set("tokens", response.data.data);
           console.log(response.data.data);
-          const tokens = storage.get("tokens");
-          const accessToken = tokens.tokenDto.accessToken;
-          console.log(accessToken);
-          document.location.href = "/";
+          history.push("/");
         }
       } catch (error) {
         dispatch({ type: "FAIL", error: error.message });
@@ -95,8 +103,10 @@ const UserSignForm = ({ type, locateion }) => {
         );
 
         dispatch({ type: "SUCCESS" });
-
-        console.log(response.data);
+        if (response.data.result === "SUCCESS") {
+          console.log(response.data);
+          history.push("/login");
+        }
       } catch (error) {
         dispatch({ type: "FAIL", error: error.message });
         console.error(error);

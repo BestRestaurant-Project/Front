@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
 import storage from "../lib/storage";
@@ -43,6 +42,9 @@ function StarRate({ storeId }) {
 
   return (
     <div>
+      <h2>
+        <p className="mt-4">별점</p>
+      </h2>
       <Stars>
         {ARRAY.map((el, idx) => {
           return (
@@ -54,10 +56,10 @@ function StarRate({ storeId }) {
             />
           );
         })}
+        <button className="find-btn2" type="submit" onClick={sendReview}>
+          평가하기
+        </button>
       </Stars>
-      <Button variant="primary" type="submit" onClick={sendReview}>
-        평가하기
-      </Button>
     </div>
   );
 }
@@ -66,7 +68,7 @@ export default StarRate;
 
 const Stars = styled.div`
   display: flex;
-  padding-top: 3px;
+  padding-top: 20px;
 
   & svg {
     color: gray;

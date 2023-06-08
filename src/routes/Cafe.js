@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 
 function Cafe() {
   return (
-    <div>
+    <div className="white__block">
       <h3>
         <p className="text-center mt-4 mb-4">카페 목록</p>
       </h3>

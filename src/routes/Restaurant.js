@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 
 function Restaurant() {
   return (
-    <div>
+    <div className="white__block">
       <h3>
         <p className="text-center mt-4 mb-4">식당 목록</p>
       </h3>

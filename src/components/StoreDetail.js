@@ -62,10 +62,11 @@ function StoreDetail({ type }) {
   if (error) return <div>에러가 발생했습니다</div>;
   if (!store) return null;
 
-  const thisStore = store.data;
+  //const thisStore = store.data;
+  const thisStore = store[0];
 
   return (
-    <div>
+    <div className="white__block">
       <h1>
         <p className="text-center mt-4 mb-4">{thisStore.name}</p>
       </h1>
