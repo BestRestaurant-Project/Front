@@ -1,7 +1,18 @@
 .white__block {
   position: relative;
   width: 600px;
-  height: 1000px auto;
+  height: 1000px;
+  padding: 57px 43px;
+  margin: 30px auto;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+.auto__block {
+  position: relative;
+  width: 600px;
+  height: 1300px auto;
   padding: 57px 43px;
   margin: 30px auto;
   border-radius: 10px;
@@ -20,9 +31,31 @@
 }
 
 .comment {
-  width: 300px;
+  width: 350px;
   height: 60px;
   resize: none;
   vertical-align: middle;
   margin-bottom: 15px;
+}
+
+.comment__block {
+  position: relative;
+  width: 300px auto;
+  height: 60px auto;
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 10px;
+  background-color: #e3ece5;
+}
+
+ul {
+  list-style: none;
+}
+
+.id__font {
+  font-weight: bold;
+}
+
+.right {
+  text-align: right;
 }

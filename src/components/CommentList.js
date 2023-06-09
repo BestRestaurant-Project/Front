@@ -40,7 +40,7 @@ const CommentList = ({ storeId, replyId }) => {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        //process.env.REACT_APP_HOST + `/user/signIn`,
+        //process.env.REACT_APP_HOST + `/replies/${storeId}`,
         `http://localhost:3000/data/replies/${storeId}.json`
       );
       setComments(response.data);
@@ -63,26 +63,27 @@ const CommentList = ({ storeId, replyId }) => {
   const handleCommentSubmit = (newComment) => {
     setComments((prevComments) => [...prevComments, newComment]);
   };
+  function CommentDate(date) {
+    return date.split("T", 1);
+  }
 
   return (
     <div>
       <h2>
         <p className="mt-4 mb-4">댓글</p>
       </h2>
-      <div className="small__block">
-        <CommentForm
-          storeId={storeId}
-          replyId={replyId}
-          onCommentSubmit={handleCommentSubmit}
-        />
+      <ul className="small__block">
+        <CommentForm storeId={storeId} onCommentSubmit={handleCommentSubmit} />
         {comments.map((comment) => (
           <>
-            <p key={comment.replyId}>
-              {comment.content} - {comment.userName}
-            </p>
+            <li className="comment__block" key={comment.replyId}>
+              <span className="id__font">{comment.userName}</span>
+              <span>&nbsp;&nbsp;{comment.content}</span>
+              <p className="right">{CommentDate(comment.dateTime)}</p>
+            </li>
           </>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

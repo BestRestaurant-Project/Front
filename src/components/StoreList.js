@@ -1,6 +1,7 @@
 import Store from "./Store";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
+import Search from "./Search";
 
 function reducer(state, action) {
   switch (action.type) {

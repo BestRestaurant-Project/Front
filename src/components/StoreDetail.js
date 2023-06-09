@@ -66,7 +66,7 @@ function StoreDetail({ type }) {
   const thisStore = store[0];
 
   return (
-    <div className="white__block">
+    <div className="auto__block">
       <h1>
         <p className="text-center mt-4 mb-4">{thisStore.name}</p>
       </h1>

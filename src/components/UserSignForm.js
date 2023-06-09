@@ -43,7 +43,7 @@ const reducer = (state, action) => {
   }
 };
 
-const UserSignForm = ({ type, locateion }) => {
+const UserSignForm = ({ type }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
@@ -118,6 +118,11 @@ const UserSignForm = ({ type, locateion }) => {
 
   return (
     <AuthFormBlock>
+      <div className="logo-area">
+        <Link style={{ color: "green" }} to="/">
+          단대맛집
+        </Link>
+      </div>
       <FormContainer>
         <Title>{type === "login" ? "로그인" : "회원가입"}</Title>
         {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -142,9 +147,13 @@ const UserSignForm = ({ type, locateion }) => {
         </Form>
         <Footer>
           {type === "login" ? (
-            <Link to="/join">회원가입</Link>
+            <Link style={{ color: "green" }} to="/join">
+              회원가입
+            </Link>
           ) : (
-            <Link to="/login">로그인</Link>
+            <Link style={{ color: "green" }} to="/login">
+              로그인
+            </Link>
           )}
         </Footer>
       </FormContainer>

@@ -16,24 +16,28 @@ function Home() {
       </p>
       <Nav className="justify-content-end">
         <Nav.Item>
-          <Nav.Link href="/login">로그인</Nav.Link>
+          <Nav.Link style={{ color: "black" }} href="/login">
+            로그인
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/join">회원가입</Nav.Link>
+          <Nav.Link style={{ color: "black" }} href="/join">
+            회원가입
+          </Nav.Link>
         </Nav.Item>
       </Nav>
       <Stack gap={2}>
         {stores.map((element, index) => (
           <div className="find-btn" key={index}>
             {element === "restaurant" ? (
-              <button className="btn find-btn1" key={element}>
-                <Link to="/restaurant">
+              <button className="find-btn1" key={element}>
+                <Link style={{ color: "white" }} to="/restaurant">
                   <h4>식당</h4>
                 </Link>
               </button>
             ) : (
-              <button className="btn find-btn1" key={element}>
-                <Link to="/cafe">
+              <button className="find-btn1" key={element}>
+                <Link style={{ color: "white" }} to="/cafe">
                   <h4>카페</h4>
                 </Link>
               </button>

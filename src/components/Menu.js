@@ -1,4 +1,3 @@
-import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
@@ -70,11 +69,8 @@ function Menu({ storeId }) {
               <div className="fw-bold">
                 <h5>{element.name}</h5>
               </div>
-              {element.cost}
+              {element.cost}원
             </div>
-            <Badge bg="dark" pill>
-              {element.foodId}
-            </Badge>
           </ListGroup.Item>
         </ListGroup>
       ))}

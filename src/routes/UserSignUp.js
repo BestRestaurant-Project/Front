@@ -35,9 +35,6 @@ function UserSignUp() {
   return (
     <AuthTemplateBlock>
       <WhiteBox>
-        <div className="logo-area">
-          <Link to="/">단대맛집</Link>
-        </div>
         <UserSignForm type="join" />
       </WhiteBox>
     </AuthTemplateBlock>
