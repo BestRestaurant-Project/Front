@@ -1,6 +1,5 @@
 import UserSignForm from "../components/UserSignForm";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const AuthTemplateBlock = styled.div`
   position: absolute;

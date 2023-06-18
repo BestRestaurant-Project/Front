@@ -38,6 +38,7 @@ function StarRate({ storeId }) {
       }
     );
     console.log(response.data);
+    window.location.reload();
   };
 
   return (

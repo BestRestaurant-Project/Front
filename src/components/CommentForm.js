@@ -1,6 +1,5 @@
 import React, { useState, useReducer } from "react";
 import axios from "axios";
-import styled from "styled-components";
 import storage from "../lib/storage";
 
 const initialState = {
@@ -56,7 +55,7 @@ const CommentForm = ({ storeId, onCommentSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { comment } = state;
+    const { content } = state;
 
     dispatch({ type: "COMMENT_START" });
 
@@ -66,8 +65,8 @@ const CommentForm = ({ storeId, onCommentSubmit }) => {
 
     try {
       const response = await axios.post(
-        //process.env.REACT_APP_HOST + `/reply/create`,
-        `http://localhost:3000/data/replies/${storeId}.json`,
+        process.env.REACT_APP_HOST + `/reply/create`,
+        //`http://localhost:3000/data/replies/${storeId}.json`,
         {
           storeId,
           content: comment,
@@ -79,20 +78,24 @@ const CommentForm = ({ storeId, onCommentSubmit }) => {
         }
       );
       dispatch({ type: "SUCCESS" });
-      onCommentSubmit(response.data);
-      setComment("");
+      if (response.data.result === "SUCCESS") {
+        onCommentSubmit(content);
+        setComment("");
+      }
     } catch (error) {
       dispatch({ type: "FAIL", error: error.message });
       console.error(error);
+      window.location.reload();
     }
   };
 
   const { content, loading, error } = state;
-  console.log(comment);
+  //if (error) return <div>에러가 발생했습니다</div>;
+
+  console.log(content);
 
   return (
     <form onSubmit={handleSubmit}>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
       <textarea
         className="comment"
         value={content}
@@ -107,7 +110,3 @@ const CommentForm = ({ storeId, onCommentSubmit }) => {
 };
 
 export default CommentForm;
-
-const ErrorMessage = styled.p`
-  color: red;
-`;

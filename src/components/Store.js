@@ -2,7 +2,7 @@ import propTypes from "prop-types";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 
-function Store({ name, type, storeId, starRating, foodType }) {
+function Store({ name, type, storeId, ratingAverage, foodType }) {
   return (
     <ListGroup id={storeId} variant="flush">
       <ListGroup.Item
@@ -14,7 +14,7 @@ function Store({ name, type, storeId, starRating, foodType }) {
           <div className="fw-bold">
             <h5>{name}</h5>
           </div>
-          {starRating}
+          {ratingAverage}
         </div>
         <Badge bg="dark" pill>
           {foodType}
@@ -28,7 +28,7 @@ Store.propTypes = {
   storeId: propTypes.number.isRequired,
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
-  starRating: propTypes.number.isRequired,
+  ratingAverage: propTypes.number.isRequired,
   foodType: propTypes.string,
 };
 

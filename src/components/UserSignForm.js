@@ -43,7 +43,7 @@ const reducer = (state, action) => {
   }
 };
 
-const UserSignForm = ({ type }) => {
+const UserSignForm = ({ type, locateion }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const history = useHistory();
 
@@ -73,19 +73,13 @@ const UserSignForm = ({ type }) => {
             password,
           }
         );
-        // 토큰을 얻어와 로컬에 저장하고 가져옴
-        storage.set("tokens", response.data.data);
-        const tokens = storage.get("tokens");
-        const accessToken = tokens.tokenDto.accessToken;
 
-        // 토큰을 헤더에 설정
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
-
-        dispatch({ type: "SUCCESS", payload: accessToken });
+        dispatch({ type: "SUCCESS" });
         if (response.data.result === "SUCCESS") {
-          console.log(response.data.data);
+          storage.set("tokens", response.data.data);
+          const tokens = storage.get("tokens");
+          const accessToken = tokens.tokenDto.accessToken;
+          console.log(accessToken);
           history.push("/");
         }
       } catch (error) {
@@ -104,7 +98,6 @@ const UserSignForm = ({ type }) => {
 
         dispatch({ type: "SUCCESS" });
         if (response.data.result === "SUCCESS") {
-          console.log(response.data);
           history.push("/login");
         }
       } catch (error) {

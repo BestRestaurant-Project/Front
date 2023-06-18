@@ -39,7 +39,8 @@ function StoreListForm({ storeType }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        `http://localhost:3000/data/stores/${storeType}.json`
+        process.env.REACT_APP_HOST + `/stores/${storeType}/get`
+        //`http://localhost:3000/data/stores/${storeType}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
     } catch (e) {
@@ -59,13 +60,13 @@ function StoreListForm({ storeType }) {
 
   return (
     <div>
-      {stores.map((store) => (
+      {stores.data.map((store) => (
         <Store
           key={store.storeId}
           type={store.type}
           name={store.name}
           storeId={store.storeId}
-          starRating={store.starRating}
+          ratingAverage={store.ratingAverage}
           foodType={store.foodType}
         />
       ))}

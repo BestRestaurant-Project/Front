@@ -38,8 +38,8 @@ function Menu({ storeId }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        //process.env.REACT_APP_HOST + `/user/signIn`,
-        `http://localhost:3000/data/foods/${storeId}.json`
+        process.env.REACT_APP_HOST + `/foods/${storeId}/get`
+        //`http://localhost:3000/data/foods/${storeId}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
     } catch (e) {
@@ -62,14 +62,14 @@ function Menu({ storeId }) {
       <h2>
         <p className="mt-4 mb-4">메뉴</p>
       </h2>
-      {menu.map((element) => (
-        <ListGroup key={element.foodId} id={element.foodId} variant="flush">
+      {menu.data.map((element) => (
+        <ListGroup key={element.foodId} variant="flush">
           <ListGroup.Item className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
               <div className="fw-bold">
-                <h5>{element.name}</h5>
+                <h5>{element.foodName}</h5>
               </div>
-              {element.cost}원
+              {element.price}원
             </div>
           </ListGroup.Item>
         </ListGroup>

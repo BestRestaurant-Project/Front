@@ -42,11 +42,10 @@ function StoreDetail({ type }) {
     dispatch({ type: "LOADING" });
     try {
       const response = await axios.get(
-        //process.env.REACT_APP_HOST + `/store/${storeId}/get`
-        `http://localhost:3000/data/restaurant/${storeId}.json`
+        process.env.REACT_APP_HOST + `/store/${storeId}/get`
+        //`http://localhost:3000/data/restaurant/${storeId}.json`
       );
       dispatch({ type: "SUCCESS", data: response.data });
-      console.log(response.data);
     } catch (e) {
       dispatch({ type: "ERROR", error: e });
     }
@@ -54,6 +53,7 @@ function StoreDetail({ type }) {
 
   useEffect(() => {
     fetchStore();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { loading, data: store, error } = state;
@@ -62,8 +62,8 @@ function StoreDetail({ type }) {
   if (error) return <div>에러가 발생했습니다</div>;
   if (!store) return null;
 
-  //const thisStore = store.data;
-  const thisStore = store[0];
+  const thisStore = store.data;
+  //const thisStore = store[0];
 
   return (
     <div className="auto__block">
